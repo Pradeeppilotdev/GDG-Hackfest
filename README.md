@@ -1,4 +1,4 @@
-# GDG On Campus KSRCE - Hackfest 2025
+# GDG On Campus KSRCE - Hackwithgdg 2025
 
 A modern, modular React application for the GDG Hackfest 2025 landing page with official Google brand guidelines and Gen Z neo-brutalist design aesthetics.
 
