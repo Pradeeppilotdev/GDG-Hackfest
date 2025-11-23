@@ -8,6 +8,7 @@ import ParticipationSection from './components/sections/ParticipationSection';
 import EventSpecificsSection from './components/sections/EventSpecificsSection';
 import SafetySection from './components/sections/SafetySection';
 import OrganizersSection from './components/sections/OrganizersSection';
+import TeamSection from './components/sections/TeamSection';
 import LocationSection from './components/sections/LocationSection';
 import ContactSection from './components/sections/ContactSection';
 import SponsorsSection from './components/sections/SponsorsSection';
@@ -27,6 +28,7 @@ function App() {
       <EventSpecificsSection />
       <SafetySection />
       <OrganizersSection />
+      <TeamSection />
       <LocationSection />
       <ContactSection />
       <SponsorsSection />
