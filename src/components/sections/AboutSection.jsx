@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { aboutPhotos } from '../../data/aboutPhotos';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -50,29 +51,41 @@ const AboutSection = () => {
 
         {/* Right Column - Polaroid Stack */}
         <div className="relative h-[500px] md:h-auto min-h-[400px]">
-          {/* Polaroid 1 */}
-          <div className="absolute top-0 left-0 w-64 sm:w-72 bg-white border-2 border-black rounded-lg p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-5deg] tape-strip">
-            <div className="bg-gray-200 border border-black h-40 sm:h-48 flex items-center justify-center font-mono text-xs sm:text-sm px-2">
-              [HACKING IN PROGRESS]
-            </div>
-            <p className="font-mono text-xs sm:text-sm mt-2 text-center">Building the future</p>
-          </div>
+          {aboutPhotos.map((photo, index) => {
+            const positions = [
+              { top: '0', left: '0', zIndex: 'z-10', additionalTransform: '' },
+              { top: '3rem', right: '0', zIndex: 'z-20', additionalTransform: '' },
+              { bottom: '0', left: '50%', zIndex: 'z-0', additionalTransform: 'translateX(-50%)' }
+            ];
 
-          {/* Polaroid 2 */}
-          <div className="absolute top-12 right-0 w-64 sm:w-72 bg-white border-2 border-black rounded-lg p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[2deg] tape-strip z-10">
-            <div className="bg-gray-200 border border-black h-40 sm:h-48 flex items-center justify-center font-mono text-xs sm:text-sm px-2">
-              [TEAM COLLABORATION]
-            </div>
-            <p className="font-mono text-xs sm:text-sm mt-2 text-center">Ideas becoming reality</p>
-          </div>
+            const position = positions[index];
+            const combinedTransform = position.additionalTransform
+              ? `${position.additionalTransform} rotate(${photo.rotation})`
+              : `rotate(${photo.rotation})`;
 
-          {/* Polaroid 3 */}
-          <div className="absolute bottom-0 left-4 sm:left-8 w-64 sm:w-72 bg-white border-2 border-black rounded-lg p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-3deg] tape-strip z-20">
-            <div className="bg-gray-200 border border-black h-40 sm:h-48 flex items-center justify-center font-mono text-xs sm:text-sm px-2">
-              [WINNERS CELEBRATION]
-            </div>
-            <p className="font-mono text-xs sm:text-sm mt-2 text-center">Dreams achieved</p>
-          </div>
+            return (
+              <div
+                key={photo.id}
+                className={`absolute ${position.zIndex} w-64 sm:w-72 bg-white border-2 border-black rounded-lg p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] tape-strip`}
+                style={{
+                  top: position.top,
+                  left: position.left,
+                  right: position.right,
+                  bottom: position.bottom,
+                  transform: combinedTransform
+                }}
+              >
+                <div className="h-40 sm:h-48 border border-black overflow-hidden">
+                  <img
+                    src={photo.photo}
+                    alt={photo.caption}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="font-mono text-xs sm:text-sm mt-2 text-center">{photo.caption}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

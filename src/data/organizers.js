@@ -1,39 +1,31 @@
-// TODO: Replace with actual organizer data
+// Replace the 'image' field with your organizer photos
 export const organizers = [
   {
-    name: "Organizer Name 1",
-    designation: "Lead Organizer",
-    image: "https://via.placeholder.com/300x300/4285f4/ffffff?text=Organizer+1",
+    name: "Chandrapradeep R",
+    designation: "GDGoC Organizer",
+    image: "/assets/photos/Chandrapradeep.png", // Replace with your photo URL or path
+    frameColor: "Blue",
     rotation: "-2"
   },
   {
-    name: "Organizer Name 2",
+    name: "Dhanushkumar M",
     designation: "Technical Lead",
-    image: "https://via.placeholder.com/300x300/ea4335/ffffff?text=Organizer+2",
+    image: "/assets/photos/Dhanushkkumar.png", // Replace with your photo URL or path
+    frameColor: "Red",
     rotation: "1"
   },
   {
-    name: "Organizer Name 3",
-    designation: "Event Coordinator",
-    image: "https://via.placeholder.com/300x300/f9ab00/ffffff?text=Organizer+3",
+    name: "Tharrunya Vaishnavi P",
+    designation: "Management Lead",
+    image: "/assets/photos/Tharrunyavaishnavi.png", // Replace with your photo URL or path
+    frameColor: "Green",
     rotation: "-1"
   },
   {
-    name: "Organizer Name 4",
-    designation: "Logistics Head",
-    image: "https://via.placeholder.com/300x300/34a853/ffffff?text=Organizer+4",
+    name: "Aditya V",
+    designation: "Non Technical Lead",
+    image: "/assets/photos/Aditya.png", // Replace with your photo URL or path
+    frameColor: "Yellow",
     rotation: "2"
-  },
-  {
-    name: "Organizer Name 5",
-    designation: "Marketing Lead",
-    image: "https://via.placeholder.com/300x300/4285f4/ffffff?text=Organizer+5",
-    rotation: "-2"
-  },
-  {
-    name: "Organizer Name 6",
-    designation: "Sponsorship Head",
-    image: "https://via.placeholder.com/300x300/ea4335/ffffff?text=Organizer+6",
-    rotation: "1"
   }
 ];

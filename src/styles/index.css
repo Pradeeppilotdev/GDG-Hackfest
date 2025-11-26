@@ -68,3 +68,29 @@ body {
 .fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
+
+/* Smooth infinite scroll animation for team carousel */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 15s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar for team carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

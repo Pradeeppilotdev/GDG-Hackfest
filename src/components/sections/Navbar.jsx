@@ -24,7 +24,6 @@ const Navbar = () => {
       className={`
         fixed top-4 left-1/2 -translate-x-1/2 z-50
         transition-all duration-300
-        ${scrolled ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'}
       `}
     >
       <div className="bg-white/90 backdrop-blur-md border-2 border-black rounded-full px-6 py-3 md:px-8 md:py-4">
