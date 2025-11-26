@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { aboutPhotos } from '../../data/aboutPhotos';
 
 const AboutSection = () => {
@@ -23,13 +23,18 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 px-4 md:px-8 lg:px-16">
-      <div className={`max-w-7xl mx-auto grid md:grid-cols-2 gap-8 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}>
-        {/* Left Column - Text */}
-        <div className="bg-pastel-green border-2 border-black rounded-2xl p-6 md:p-8 lg:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-          <h2 className="font-heading font-black text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6">
-            WHAT IS HACKFEST?
-          </h2>
+    <section id="about" ref={sectionRef} className="py-20 px-4 md:px-8 lg:px-16 bg-off-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-center mb-12 md:mb-16">
+          ABOUT
+        </h2>
+        
+        <div className={`grid md:grid-cols-2 gap-8 md:gap-12 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}>
+          {/* Left Column - Text */}
+          <div className="bg-white border-2 border-black rounded-2xl p-6 md:p-8 lg:p-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <h3 className="font-heading font-black text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 text-brand-blue">
+              What is Hack with GDG?
+            </h3>
           <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed">
             A 24-hour coding marathon where innovators, designers, and problem-solvers come together to build the future.
           </p>
@@ -86,6 +91,7 @@ const AboutSection = () => {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </section>
