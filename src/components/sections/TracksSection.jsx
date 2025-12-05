@@ -11,11 +11,11 @@ const TracksSection = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Stagger animation for cards
+          // Smooth staggered animation with shorter delays
           [0, 1, 2, 3].forEach((index) => {
             setTimeout(() => {
               setVisibleCards(prev => [...prev, index]);
-            }, index * 150);
+            }, index * 100);
           });
         }
       },
@@ -50,9 +50,10 @@ const TracksSection = () => {
               <div
                 key={index}
                 className={`
-                  ${visibleCards.includes(index) ? 'fade-in-up' : 'opacity-0'}
+                  transition-all duration-700 ease-out
+                  ${visibleCards.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
                 `}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <StickerCard bgColor={track.bgColor} rotation={track.rotation} className="h-full">
                   <div className="flex flex-col h-full">

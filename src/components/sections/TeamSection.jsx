@@ -6,8 +6,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const TeamSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const sectionRef = useRef(null);
   const carouselRef = useRef(null);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,34 +28,79 @@ const TeamSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const scroll = (direction) => {
-    if (carouselRef.current) {
-      const scrollAmount = 300;
-      const currentScroll = carouselRef.current.scrollLeft;
-      const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+  // Update current index based on scroll position
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) return;
 
-      let newPosition;
+    const handleScroll = () => {
+      if (cardRefs.current.length === 0) return;
+      
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+      
+      // Find which card is closest to center
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      
+      cardRefs.current.forEach((card, index) => {
+        if (card) {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(cardCenter - containerCenter);
+          
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        }
+      });
+      
+      setCurrentIndex(closestIndex);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scroll = (direction) => {
+    if (carouselRef.current && cardRefs.current.length > 0) {
+      let targetIndex;
+      
       if (direction === 'left') {
-        // Loop to end if at or near beginning
-        if (currentScroll <= 10) {
-          newPosition = maxScroll;
-        } else {
-          newPosition = currentScroll - scrollAmount;
+        targetIndex = currentIndex - 1;
+        if (targetIndex < 0) {
+          targetIndex = teamMembers.length - 1;
         }
       } else {
-        // Loop to beginning if at or near end
-        if (currentScroll >= maxScroll - 10) {
-          newPosition = 0;
-        } else {
-          newPosition = currentScroll + scrollAmount;
+        targetIndex = currentIndex + 1;
+        if (targetIndex >= teamMembers.length) {
+          targetIndex = 0;
         }
       }
-
-      carouselRef.current.scrollTo({
-        left: newPosition,
-        behavior: 'smooth'
-      });
-      setScrollPosition(newPosition);
+      
+      setCurrentIndex(targetIndex);
+      
+      const targetCard = cardRefs.current[targetIndex];
+      if (targetCard) {
+        const container = carouselRef.current;
+        const containerRect = container.getBoundingClientRect();
+        const cardRect = targetCard.getBoundingClientRect();
+        
+        // Calculate scroll position to center the card
+        const scrollLeft = container.scrollLeft;
+        const cardLeft = cardRect.left - containerRect.left + scrollLeft;
+        const cardWidth = cardRect.width;
+        const containerWidth = containerRect.width;
+        
+        const targetScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+        
+        container.scrollTo({
+          left: targetScroll,
+          behavior: 'smooth'
+        });
+        setScrollPosition(targetScroll);
+      }
     }
   };
 
@@ -95,39 +142,40 @@ const TeamSection = () => {
 
         {/* Carousel Container */}
         <div className="relative rounded-3xl overflow-hidden">
-          {/* Gradient Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-pastel-blue to-transparent z-10 pointer-events-none rounded-l-3xl"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-pastel-yellow to-transparent z-10 pointer-events-none rounded-r-3xl"></div>
+          {/* Gradient Fade Edges - Reduced intensity */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-pastel-blue/30 to-transparent z-10 pointer-events-none rounded-l-3xl"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-pastel-yellow/30 to-transparent z-10 pointer-events-none rounded-r-3xl"></div>
 
           {/* Left Arrow */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white border-4 border-black rounded-full p-3 md:p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:scale-110 transition-all duration-300"
+            className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-30 bg-white/95 backdrop-blur-sm border-4 border-black rounded-full p-2 md:p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:scale-110 transition-all duration-300"
             aria-label="Scroll left"
           >
-            <ChevronLeft size={24} className="md:w-8 md:h-8" />
+            <ChevronLeft size={20} className="md:w-8 md:h-8" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={() => scroll('right')}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white border-4 border-black rounded-full p-3 md:p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:scale-110 transition-all duration-300"
+            className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-30 bg-white/95 backdrop-blur-sm border-4 border-black rounded-full p-2 md:p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:scale-110 transition-all duration-300"
             aria-label="Scroll right"
           >
-            <ChevronRight size={24} className="md:w-8 md:h-8" />
+            <ChevronRight size={20} className="md:w-8 md:h-8" />
           </button>
 
           {/* Scrolling Carousel - Manual Navigation */}
           <div
             ref={carouselRef}
-            className="overflow-x-auto py-8 px-12 scrollbar-hide"
+            className="overflow-x-auto py-8 px-16 md:px-12 scrollbar-hide snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <div className="flex gap-6 md:gap-8">
               {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-64 md:w-72 transform hover:scale-110 hover:-rotate-2 transition-all duration-300"
+                ref={(el) => (cardRefs.current[index] = el)}
+                className="flex-shrink-0 w-64 md:w-72 transform hover:scale-110 hover:-rotate-2 transition-all duration-300 snap-center"
               >
                 <div className="relative">
                   {/* Photo Frame Card */}

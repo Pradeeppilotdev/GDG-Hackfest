@@ -36,12 +36,12 @@ const AboutSection = () => {
               What is Hack with GDG?
             </h3>
           <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed">
-            A 24-hour coding marathon where innovators, designers, and problem-solvers come together to build the future.
+            A 36-hour coding marathon where innovators, designers, and problem-solvers come together to build the future.
           </p>
           <div className="space-y-3 md:space-y-4 font-mono text-sm md:text-base">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-brand-blue rounded-full border-2 border-black flex-shrink-0"></div>
-              <span className="font-bold">February 14-15, 2025</span>
+              <span className="font-bold">February 13-15, 2025 (9pm - 9am)</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-brand-red rounded-full border-2 border-black flex-shrink-0"></div>

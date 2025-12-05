@@ -1,31 +1,31 @@
 // TODO: Replace with actual contact details
 export const contacts = [
   {
-    name: "Contact Person 1",
-    role: "Event Coordinator",
-    phone: "+91 98765 43210",
-    email: "person1@gdgksrce.dev",
+    name: "Chandrapradeep R",
+    role: "GDGoC Organizer",
+    phone: "+91 90473 53386",
+    email: "chandrapradeepr@gmail.com",
     bgColor: "bg-pastel-blue"
   },
   {
-    name: "Contact Person 2",
+    name: "Dhanushkumar M",
     role: "Technical Lead",
-    phone: "+91 98765 43211",
-    email: "person2@gdgksrce.dev",
+    phone: "+91 98422 62221",
+    email: "dhanush.kumar.m@gmail.com",
     bgColor: "bg-pastel-red"
   },
   {
-    name: "Contact Person 3",
-    role: "Logistics Head",
-    phone: "+91 98765 43212",
-    email: "person3@gdgksrce.dev",
+    name: "Tharrunya Vaishnavi P",
+    role: "Management Lead",
+    phone: "+91 97512 95071",
+    email: "tharrunyavaisnavi@gmail.com",
     bgColor: "bg-pastel-yellow"
   },
   {
-    name: "Contact Person 4",
-    role: "Sponsorship Head",
-    phone: "+91 98765 43213",
-    email: "person4@gdgksrce.dev",
+    name: "Aditya V",
+    role: "Non-Technical Lead",
+    phone: "+91 63800 07564",
+    email: "adityaspark05@gmail.com",
     bgColor: "bg-pastel-green"
   }
 ];

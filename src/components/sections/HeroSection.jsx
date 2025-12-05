@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { ThreeLoops, AngledSlashes, Brackets, Asterisk } from '../icons';
 import { Button } from '../ui';
 
 const HeroSection = () => {
@@ -14,8 +13,8 @@ const HeroSection = () => {
     const timer = setInterval(() => {
       currentStep++;
       setCount({
-        hackers: Math.floor((100 * currentStep) / steps),
-        hours: Math.floor((24 * currentStep) / steps)
+        hackers: Math.floor((400 * currentStep) / steps),
+        hours: Math.floor((36 * currentStep) / steps)
       });
 
       if (currentStep >= steps) clearInterval(timer);
@@ -24,228 +23,214 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-4">
-      {/* Google Doodle Themed Background with Swirls */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Doodle Swirls - SVG paths for organic curves */}
-        <svg className="absolute top-10 left-5 w-32 h-32 animate-float" viewBox="0 0 100 100" style={{'--rotate': '15deg'}}>
-          <path
-            d="M 20 50 Q 30 20, 50 30 Q 70 40, 60 60 Q 50 80, 30 70 Q 10 60, 20 50"
-            stroke="#4285f4"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 30 50 Q 40 30, 60 40 Q 80 50, 70 70 Q 60 90, 40 80 Q 20 70, 30 50"
-            stroke="#4285f4"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-        
-        <svg className="absolute top-32 right-8 w-28 h-28 animate-float delay-500" viewBox="0 0 100 100" style={{'--rotate': '-20deg'}}>
-          <path
-            d="M 50 20 Q 80 30, 70 50 Q 60 70, 40 60 Q 20 50, 30 30 Q 40 10, 50 20"
-            stroke="#ea4335"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 50 30 Q 70 40, 65 55 Q 60 70, 45 65 Q 30 60, 35 45 Q 40 30, 50 30"
-            stroke="#ea4335"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-        
-        <svg className="absolute bottom-32 left-12 w-36 h-36 animate-float delay-1000" viewBox="0 0 100 100" style={{'--rotate': '25deg'}}>
-          <path
-            d="M 50 10 Q 80 20, 90 50 Q 80 80, 50 90 Q 20 80, 10 50 Q 20 20, 50 10"
-            stroke="#f9ab00"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 50 20 Q 70 30, 75 50 Q 70 70, 50 75 Q 30 70, 25 50 Q 30 30, 50 20"
-            stroke="#f9ab00"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-        
-        <svg className="absolute bottom-20 right-16 w-24 h-24 animate-float delay-1500" viewBox="0 0 100 100" style={{'--rotate': '-30deg'}}>
-          <path
-            d="M 30 50 Q 50 20, 70 50 Q 50 80, 30 50"
-            stroke="#34a853"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 40 50 Q 55 35, 60 50 Q 55 65, 40 50"
-            stroke="#34a853"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-        
-        <svg className="absolute top-1/2 left-8 w-40 h-40 animate-float" viewBox="0 0 100 100" style={{'--rotate': '10deg'}}>
-          <path
-            d="M 20 50 Q 30 20, 50 25 Q 70 30, 80 50 Q 70 70, 50 75 Q 30 70, 20 50"
-            stroke="#4285f4"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 25 50 Q 35 35, 50 40 Q 65 45, 75 50 Q 65 55, 50 60 Q 35 55, 25 50"
-            stroke="#4285f4"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.5"
-          />
-        </svg>
-        
-        <svg className="absolute top-1/3 right-12 w-44 h-44 animate-float delay-500" viewBox="0 0 100 100" style={{'--rotate': '-15deg'}}>
-          <path
-            d="M 50 10 Q 90 20, 95 50 Q 90 80, 50 90 Q 10 80, 5 50 Q 10 20, 50 10"
-            stroke="#ea4335"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 50 20 Q 80 25, 85 50 Q 80 75, 50 80 Q 20 75, 15 50 Q 20 25, 50 20"
-            stroke="#ea4335"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.5"
-          />
-        </svg>
-        
-        <svg className="absolute bottom-1/3 left-20 w-32 h-32 animate-float delay-1000" viewBox="0 0 100 100" style={{'--rotate': '20deg'}}>
-          <path
-            d="M 30 30 Q 50 10, 70 30 Q 50 50, 30 30"
-            stroke="#f9ab00"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 50 50 Q 70 30, 90 50 Q 70 70, 50 50"
-            stroke="#f9ab00"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 30 70 Q 50 50, 70 70 Q 50 90, 30 70"
-            stroke="#f9ab00"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </svg>
-        
-        <svg className="absolute top-20 right-1/4 w-28 h-28 animate-float delay-1500" viewBox="0 0 100 100" style={{'--rotate': '-25deg'}}>
-          <path
-            d="M 50 20 Q 80 40, 70 70 Q 40 80, 20 60 Q 30 30, 50 20"
-            stroke="#34a853"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 50 30 Q 70 45, 65 65 Q 45 70, 30 55 Q 35 40, 50 30"
-            stroke="#34a853"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-        
-        {/* Additional smaller swirls for depth */}
-        <svg className="absolute top-1/4 left-1/3 w-20 h-20 animate-float delay-300" viewBox="0 0 100 100" style={{'--rotate': '12deg'}}>
-          <path
-            d="M 50 30 Q 70 40, 60 60 Q 40 50, 50 30"
-            stroke="#4285f4"
-            strokeWidth="2.5"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </svg>
-        
-        <svg className="absolute bottom-1/4 right-1/3 w-24 h-24 animate-float delay-700" viewBox="0 0 100 100" style={{'--rotate': '-18deg'}}>
-          <path
-            d="M 40 50 Q 60 30, 80 50 Q 60 70, 40 50"
-            stroke="#ea4335"
-            strokeWidth="2.5"
-            fill="none"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
+  // Doodle text style with black stroke
+  const doodleTextStyle = {
+    fontFamily: "'Google Sans', 'Product Sans', 'Roboto', sans-serif",
+    WebkitTextStroke: '3px black',
+    paintOrder: 'stroke fill',
+    textShadow: '4px 4px 0px rgba(0, 0, 0, 0.2)',
+  };
 
-      {/* Background Doodles */}
-      <div className="absolute top-20 right-10 animate-float" style={{'--rotate': '-15deg'}}>
-        <ThreeLoops size={150} />
-      </div>
-      <div className="absolute top-40 left-10 animate-float delay-500">
-        <Asterisk size={40} color="#ea4335" />
-      </div>
-      <div className="absolute bottom-1/3 right-20 animate-float delay-1000">
-        <Asterisk size={50} color="#34a853" />
-      </div>
-      <div className="absolute top-1/3 left-20 animate-float delay-1500">
-        <AngledSlashes size={70} color="#f9ab00" />
-      </div>
-      <div className="absolute bottom-40 left-1/4 animate-float">
-        <Brackets variant="square" size={100} color="#ea4335" />
-      </div>
-      <div className="absolute top-1/4 right-1/3 animate-float delay-500">
-        <Asterisk size={35} color="#4285f4" />
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden pt-20 px-4 bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100">
+      
+      {/* Doodle-Themed Natural Scene Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        
+        {/* Doodle Sun - with black outline */}
+        <div className="absolute top-12 right-12 md:right-20 lg:right-28">
+          <svg width="120" height="120" viewBox="0 0 120 120" className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32">
+            <circle cx="60" cy="60" r="35" fill="#f9ab00" stroke="#000" strokeWidth="3" />
+            <line x1="60" y1="15" x2="60" y2="5" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="60" y1="115" x2="60" y2="105" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="15" y1="60" x2="5" y2="60" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="115" y1="60" x2="105" y2="60" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="28" y1="28" x2="21" y2="21" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="92" y1="92" x2="99" y2="99" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="28" y1="92" x2="21" y2="99" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <line x1="92" y1="28" x2="99" y2="21" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        </div>
+        
+        {/* Simple V-Shaped Birds - Clean doodle style */}
+        <svg className="absolute top-16 left-[15%] w-24 h-16 animate-bird-fly" style={{ animationDuration: '20s' }}>
+          <path d="M 12 12 Q 18 6, 24 12" stroke="#000" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M 30 10 Q 36 4, 42 10" stroke="#000" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M 20 16 Q 26 10, 32 16" stroke="#000" strokeWidth="2" fill="none" strokeLinecap="round" />
+        </svg>
+        
+        <svg className="absolute top-24 left-[40%] w-20 h-14 animate-bird-fly-reverse" style={{ animationDuration: '25s', animationDelay: '5s' }}>
+          <path d="M 10 10 Q 15 5, 20 10" stroke="#000" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M 24 8 Q 29 3, 34 8" stroke="#000" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+        
+        <svg className="absolute top-20 right-[25%] w-16 h-12 animate-bird-fly" style={{ animationDuration: '18s', animationDelay: '8s' }}>
+          <path d="M 8 8 Q 12 4, 16 8" stroke="#000" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        </svg>
+        
+        {/* Doodle Clouds - with black outlines */}
+        <div className="absolute top-10 left-6 animate-cloud-slow">
+          <svg width="100" height="60" viewBox="0 0 100 60">
+            <ellipse cx="30" cy="35" rx="20" ry="15" fill="#fff" stroke="#000" strokeWidth="2.5" />
+            <ellipse cx="50" cy="30" rx="25" ry="18" fill="#fff" stroke="#000" strokeWidth="2.5" />
+            <ellipse cx="70" cy="35" rx="20" ry="15" fill="#fff" stroke="#000" strokeWidth="2.5" />
+            <ellipse cx="50" cy="40" rx="30" ry="12" fill="#fff" stroke="#000" strokeWidth="2.5" />
+          </svg>
+        </div>
+        
+        <div className="absolute top-16 left-1/3 animate-cloud-medium">
+          <svg width="120" height="70" viewBox="0 0 120 70">
+            <ellipse cx="35" cy="40" rx="22" ry="16" fill="#fff" stroke="#000" strokeWidth="2.5" />
+            <ellipse cx="60" cy="32" rx="28" ry="20" fill="#fff" stroke="#000" strokeWidth="2.5" />
+            <ellipse cx="85" cy="40" rx="22" ry="16" fill="#fff" stroke="#000" strokeWidth="2.5" />
+            <ellipse cx="60" cy="48" rx="35" ry="14" fill="#fff" stroke="#000" strokeWidth="2.5" />
+          </svg>
+        </div>
+        
+        <div className="absolute top-6 right-1/3 animate-cloud-fast">
+          <svg width="80" height="50" viewBox="0 0 80 50">
+            <ellipse cx="25" cy="28" rx="16" ry="12" fill="#fff" stroke="#000" strokeWidth="2" />
+            <ellipse cx="40" cy="22" rx="20" ry="14" fill="#fff" stroke="#000" strokeWidth="2" />
+            <ellipse cx="55" cy="28" rx="16" ry="12" fill="#fff" stroke="#000" strokeWidth="2" />
+            <ellipse cx="40" cy="34" rx="24" ry="10" fill="#fff" stroke="#000" strokeWidth="2" />
+          </svg>
+        </div>
+        
+        {/* Wavy Ocean with Multiple Wave Layers */}
+        <div className="absolute bottom-12 left-0 right-0 w-full h-52 md:h-64 overflow-hidden">
+          <svg 
+            className="w-full h-full"
+            viewBox="0 0 5000 350"
+            preserveAspectRatio="none"
+          >
+            {/* Wave 1 - Back (darker blue) - More wavy */}
+            <path 
+              className="animate-wave-slow"
+              fill="#2563eb"
+              stroke="#000"
+              strokeWidth="3"
+              d="M0,100 C200,130 400,70 600,100 C800,130 1000,70 1200,100 C1400,130 1600,70 1800,100 C2000,130 2200,70 2400,100 C2600,130 2800,70 3000,100 C3200,130 3400,70 3600,100 C3800,130 4000,70 4200,100 C4400,130 4600,70 4800,100 C4900,120 5000,110 5000,100 L5000,350 L0,350 Z"
+              vectorEffect="non-scaling-stroke"
+            />
+            {/* Wave 2 - More wavy */}
+            <path 
+              className="animate-wave-medium"
+              fill="#3b82f6"
+              stroke="#000"
+              strokeWidth="3"
+              d="M0,140 C250,170 500,110 750,140 C1000,170 1250,110 1500,140 C1750,170 2000,110 2250,140 C2500,170 2750,110 3000,140 C3250,170 3500,110 3750,140 C4000,170 4250,110 4500,140 C4750,160 5000,150 5000,140 L5000,350 L0,350 Z"
+              vectorEffect="non-scaling-stroke"
+            />
+            {/* Wave 3 - More wavy */}
+            <path 
+              className="animate-wave-fast"
+              fill="#60a5fa"
+              stroke="#000"
+              strokeWidth="3"
+              d="M0,180 C300,210 600,150 900,180 C1200,210 1500,150 1800,180 C2100,210 2400,150 2700,180 C3000,210 3300,150 3600,180 C3900,210 4200,150 4500,180 C4800,200 5000,190 5000,180 L5000,350 L0,350 Z"
+              vectorEffect="non-scaling-stroke"
+            />
+            {/* Wave 4 - Front (lightest) - More wavy */}
+            <path 
+              className="animate-wave-slow"
+              style={{ animationDelay: '0.5s' }}
+              fill="#93c5fd"
+              stroke="#000"
+              strokeWidth="3"
+              d="M0,220 C350,250 700,190 1050,220 C1400,250 1750,190 2100,220 C2450,250 2800,190 3150,220 C3500,250 3850,190 4200,220 C4550,250 4900,210 5000,220 L5000,350 L0,350 Z"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+        </div>
+        
+        {/* Multiple Doodle Boats */}
+        {/* Boat 1 - Main boat */}
+        <div className="absolute bottom-32 md:bottom-40 left-[20%] animate-boat-sail z-10">
+          <svg width="80" height="100" viewBox="0 0 80 100">
+            <path d="M 12 70 Q 40 85, 68 70 L 62 78 Q 40 90, 18 78 Z" fill="#ea4335" stroke="#000" strokeWidth="3" strokeLinejoin="round" />
+            <line x1="40" y1="70" x2="40" y2="25" stroke="#000" strokeWidth="3" strokeLinecap="round" />
+            <path d="M 40 27 L 40 65 L 65 50 Z" fill="#fff" stroke="#000" strokeWidth="2.5" strokeLinejoin="round" />
+            <path d="M 40 32 L 40 55 L 20 48 Z" fill="#fff" stroke="#000" strokeWidth="2.5" strokeLinejoin="round" />
+            <path d="M 40 25 L 40 15 L 52 20 Z" fill="#f9ab00" stroke="#000" strokeWidth="2" />
+          </svg>
+        </div>
+        
+        {/* Boat 2 - Small boat on right */}
+        <div className="absolute bottom-28 md:bottom-36 right-[15%] animate-boat-sail z-10" style={{ animationDelay: '1s', animationDuration: '5s' }}>
+          <svg width="50" height="65" viewBox="0 0 50 65">
+            <path d="M 8 45 Q 25 55, 42 45 L 38 50 Q 25 58, 12 50 Z" fill="#4285f4" stroke="#000" strokeWidth="2.5" strokeLinejoin="round" />
+            <line x1="25" y1="45" x2="25" y2="18" stroke="#000" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M 25 20 L 25 42 L 40 32 Z" fill="#fff" stroke="#000" strokeWidth="2" strokeLinejoin="round" />
+            <path d="M 25 18 L 25 12 L 32 15 Z" fill="#34a853" stroke="#000" strokeWidth="1.5" />
+          </svg>
+        </div>
+        
+        {/* Boat 3 - Tiny boat in distance */}
+        <div className="absolute bottom-24 md:bottom-32 left-[55%] animate-boat-sail z-10" style={{ animationDelay: '2s', animationDuration: '6s' }}>
+          <svg width="35" height="45" viewBox="0 0 35 45">
+            <path d="M 5 32 Q 17 40, 30 32 L 27 36 Q 17 42, 8 36 Z" fill="#34a853" stroke="#000" strokeWidth="2" strokeLinejoin="round" />
+            <line x1="17" y1="32" x2="17" y2="14" stroke="#000" strokeWidth="2" strokeLinecap="round" />
+            <path d="M 17 15 L 17 30 L 28 24 Z" fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+        </div>
+        
+        {/* Boat 4 - Another small boat */}
+        <div className="absolute bottom-20 md:bottom-28 right-[40%] animate-boat-sail z-10" style={{ animationDelay: '3s', animationDuration: '4.5s' }}>
+          <svg width="40" height="50" viewBox="0 0 40 50">
+            <path d="M 6 35 Q 20 44, 34 35 L 30 40 Q 20 47, 10 40 Z" fill="#f9ab00" stroke="#000" strokeWidth="2" strokeLinejoin="round" />
+            <line x1="20" y1="35" x2="20" y2="12" stroke="#000" strokeWidth="2" strokeLinecap="round" />
+            <path d="M 20 14 L 20 33 L 32 25 Z" fill="#fff" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M 20 12 L 20 7 L 26 9.5 Z" fill="#ea4335" stroke="#000" strokeWidth="1.5" />
+          </svg>
+        </div>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center max-w-5xl px-4">
-        <h1 className="font-heading font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-brand-black mb-6 leading-tight"
-            style={{textShadow: '4px 4px 0px rgba(0, 0, 0, 1)'}}>
-          Hack with GDG Season 3
-        </h1>
+      <div className="relative z-10 text-center max-w-6xl px-4">
+        {/* Doodle Title with black borders */}
+        <div className="mb-8 md:mb-12">
+          <h1 className="font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[1.15]">
+            <div className="flex flex-wrap justify-center items-baseline gap-3 md:gap-5">
+              <span className="text-brand-blue hover:scale-105 transition-transform duration-300" style={doodleTextStyle}>
+                Hack
+              </span>
+              <span className="text-brand-red hover:scale-105 transition-transform duration-300" style={doodleTextStyle}>
+                with
+              </span>
+              <span className="text-brand-green hover:scale-105 transition-transform duration-300" style={doodleTextStyle}>
+                GDG
+              </span>
+            </div>
+            <div className="flex flex-wrap justify-center items-baseline gap-3 md:gap-5 mt-1 md:mt-2">
+              <span className="text-brand-yellow hover:scale-105 transition-transform duration-300" style={doodleTextStyle}>
+                Season
+              </span>
+              <span className="text-brand-blue hover:scale-105 transition-transform duration-300" style={doodleTextStyle}>
+                3
+              </span>
+            </div>
+          </h1>
+        </div>
 
-        <div className="font-mono text-sm sm:text-base md:text-xl lg:text-2xl mb-12 flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8">
-          <span className="bg-pastel-yellow border-2 border-black px-3 sm:px-4 py-2 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-center">
+        {/* Stats - Doodle style with black borders */}
+        <div className="font-mono text-sm sm:text-base md:text-xl lg:text-2xl mb-10 flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
+          <span className="bg-white border-2 border-black px-4 sm:px-5 md:px-6 py-2 md:py-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-300">
             {count.hours} HOURS
           </span>
-          <span className="bg-pastel-blue border-2 border-black px-3 sm:px-4 py-2 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-center">
+          <span className="bg-white border-2 border-black px-4 sm:px-5 md:px-6 py-2 md:py-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-300">
             {count.hackers}+ HACKERS
           </span>
-          <span className="bg-pastel-green border-2 border-black px-3 sm:px-4 py-2 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-center">
+          <span className="bg-white border-2 border-black px-4 sm:px-5 md:px-6 py-2 md:py-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-300">
             INFINITE POSSIBILITIES
           </span>
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-          <Button variant="primary" className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+          <Button variant="primary" className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 w-full sm:w-auto hover:scale-105 transition-all duration-300 font-bold">
             Register Now
           </Button>
-          <Button variant="outline" className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 w-full sm:w-auto">
+          <Button variant="outline" className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 w-full sm:w-auto bg-white hover:scale-105 transition-all duration-300 font-bold">
             Join Discord
           </Button>
         </div>

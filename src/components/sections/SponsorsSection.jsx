@@ -30,7 +30,13 @@ const SponsorsSection = () => {
 
       <div className="text-center mt-10 md:mt-12 px-4">
         <p className="font-mono text-base md:text-lg mb-4 md:mb-6">Want to sponsor this event?</p>
-        <Button variant="outline" className="text-sm md:text-base">Become a Sponsor</Button>
+        <Button
+          variant="outline"
+          className="text-sm md:text-base"
+          onClick={() => window.location.href = 'mailto:chandrapradeepr@gmail.com?subject=Sponsorship Enquiry for GDG Hackfest'}
+        >
+          Become a Sponsor
+        </Button>
       </div>
     </section>
   );

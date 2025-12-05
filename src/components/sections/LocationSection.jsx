@@ -60,7 +60,7 @@ const LocationSection = () => {
                 <Calendar size={20} color="#7177efff" />
                 <h4 className="font-heading font-bold text-sm md:text-base">Event Date</h4>
               </div>
-              <p className="font-mono text-xs md:text-sm">Feb 14-15, 2025</p>
+              <p className="font-mono text-xs md:text-sm">Feb 13-15, 2025</p>
             </div>
 
             {/* Sticky Note: Google Maps Link (Bottom Left) */}
