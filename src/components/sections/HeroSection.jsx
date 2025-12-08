@@ -46,7 +46,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden pt-20 px-4 bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100">
+    <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden pt-20 px-4 bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100" aria-label="Hack with GDG Season 3 - Main Hero Section">
       
       {/* Doodle-Themed Natural Scene Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
