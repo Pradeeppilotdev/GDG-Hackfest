@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { GDGLogo } from '../icons';
-import { Button } from '../ui';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Load Devfolio SDK script
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -26,8 +31,8 @@ const Navbar = () => {
         transition-all duration-300
       `}
     >
-      <div className="bg-white/90 backdrop-blur-md border-2 border-black rounded-full px-6 py-3 md:px-8 md:py-4">
-        <div className="flex items-center justify-between gap-4 md:gap-8">
+      <div className="bg-white/10 backdrop-blur-md border-2 border-black rounded-2xl px-4 py-2 md:px-6 md:py-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div className="flex items-center justify-between gap-3 md:gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <GDGLogo size={32} />
@@ -35,18 +40,46 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6 font-mono text-sm">
-            <button onClick={() => scrollToSection('about')} className="hover:text-brand-blue transition-colors">About</button>
-            <button onClick={() => scrollToSection('tracks')} className="hover:text-brand-blue transition-colors">Tracks</button>
-            <button onClick={() => scrollToSection('timeline')} className="hover:text-brand-blue transition-colors">Timeline</button>
-            <button onClick={() => scrollToSection('organizers')} className="hover:text-brand-blue transition-colors">Team</button>
-            <button onClick={() => scrollToSection('contact')} className="hover:text-brand-blue transition-colors">Contact</button>
+          <div className="hidden lg:flex items-center gap-2 md:gap-3 font-mono text-sm font-bold">
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="bg-white border-2 border-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-blue hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('tracks')} 
+              className="bg-white border-2 border-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-red hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Tracks
+            </button>
+            <button 
+              onClick={() => scrollToSection('timeline')} 
+              className="bg-white border-2 border-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-yellow hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Timeline
+            </button>
+            <button 
+              onClick={() => scrollToSection('organizers')} 
+              className="bg-white border-2 border-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-green hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Team
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className="bg-white border-2 border-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-blue hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Contact
+            </button>
           </div>
 
-          {/* CTA Button */}
-          <Button variant="primary" className="hidden lg:block text-sm px-4 py-2">
-            Register Now
-          </Button>
+          {/* Apply with Devfolio Button */}
+          <div 
+            className="apply-button hidden lg:block" 
+            data-hackathon-slug="hack-with-gdg-s3" 
+            data-button-theme="dark-inverted"
+            style={{ height: '44px', width: '200px', minWidth: '180px' }}
+          ></div>
 
           {/* Mobile Menu Button */}
           <button
@@ -62,14 +95,44 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full mt-4 left-0 right-0 bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          <div className="flex flex-col gap-4 font-mono">
-            <button onClick={() => scrollToSection('about')} className="text-left hover:text-brand-blue transition-colors">About</button>
-            <button onClick={() => scrollToSection('tracks')} className="text-left hover:text-brand-blue transition-colors">Tracks</button>
-            <button onClick={() => scrollToSection('timeline')} className="text-left hover:text-brand-blue transition-colors">Timeline</button>
-            <button onClick={() => scrollToSection('organizers')} className="text-left hover:text-brand-blue transition-colors">Team</button>
-            <button onClick={() => scrollToSection('contact')} className="text-left hover:text-brand-blue transition-colors">Contact</button>
-            <Button variant="primary" className="w-full mt-2">Register Now</Button>
+        <div className="lg:hidden absolute top-full mt-4 left-0 right-0 bg-white/10 backdrop-blur-md border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="flex flex-col gap-3 font-mono font-bold">
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-left bg-white border-2 border-black px-4 py-2.5 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-blue hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('tracks')} 
+              className="text-left bg-white border-2 border-black px-4 py-2.5 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-red hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Tracks
+            </button>
+            <button 
+              onClick={() => scrollToSection('timeline')} 
+              className="text-left bg-white border-2 border-black px-4 py-2.5 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-yellow hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Timeline
+            </button>
+            <button 
+              onClick={() => scrollToSection('organizers')} 
+              className="text-left bg-white border-2 border-black px-4 py-2.5 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-green hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Team
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className="text-left bg-white border-2 border-black px-4 py-2.5 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:-translate-x-0.5 hover:bg-brand-blue hover:text-white transition-all duration-150 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+            >
+              Contact
+            </button>
+            <div 
+              className="apply-button w-full mt-2" 
+              data-hackathon-slug="hack-with-gdg-s3" 
+              data-button-theme="dark-inverted"
+              style={{ height: '44px', width: '100%' }}
+            ></div>
           </div>
         </div>
       )}
