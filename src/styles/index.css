@@ -238,3 +238,58 @@ body {
 .animate-boat-sail {
   animation: boatSail 4s ease-in-out infinite;
 }
+
+/* Ensure Devfolio elements don't interfere with navbar */
+#devfolio-overlay-container {
+  z-index: 40 !important;
+}
+
+.apply-button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure navbar hamburger menu is always on top */
+nav button[aria-label="Toggle menu"] {
+  z-index: 100 !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure navbar doesn't overflow on very small screens */
+nav {
+  max-width: calc(100vw - 16px) !important;
+  box-sizing: border-box !important;
+  overflow: visible;
+}
+
+nav > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: visible;
+}
+
+/* Prevent navbar content from overflowing */
+nav > div > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+  box-sizing: border-box !important;
+  overflow: visible;
+}
+
+/* Ensure hamburger button stays within navbar bounds and is always visible */
+@media (max-width: 1023px) {
+  nav button[aria-label="Toggle menu"] {
+    position: relative !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+    order: 999;
+  }
+}
+
+/* Ensure Devfolio button in mobile menu is visible */
+.apply-button-mobile {
+  display: block !important;
+}
