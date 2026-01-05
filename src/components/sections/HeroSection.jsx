@@ -4,20 +4,6 @@ import { Button } from '../ui';
 const HeroSection = () => {
   const [count, setCount] = useState({ hackers: 0, hours: 0 });
 
-  // Load Devfolio SDK script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://apply.devfolio.co/v2/sdk.js';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
   useEffect(() => {
     const duration = 2000;
     const steps = 60;
@@ -241,23 +227,25 @@ const HeroSection = () => {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
-          {/* Apply with Devfolio Button */}
-          <div 
-            className="apply-button" 
-            data-hackathon-slug="hack-with-gdg-s3" 
-            data-button-theme="dark-inverted"
-            style={{ height: '56px', width: '312px', minWidth: '280px' }}
-          ></div>
-          <a 
+          {/* Register Button */}
+          <Button 
+            variant="primary" 
+            href="https://hack-with-gdg-s3.devfolio.co/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 w-full sm:w-auto font-bold"
+          >
+            Register
+          </Button>
+          <Button 
+            variant="outline" 
             href="https://discord.gg/bmAaQWMp" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-block"
+            className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 w-full sm:w-auto bg-white font-bold"
           >
-            <Button variant="outline" className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 w-full sm:w-auto bg-white hover:scale-105 transition-all duration-300 font-bold">
-              Join Discord
-            </Button>
-          </a>
+            Join Discord
+          </Button>
         </div>
       </div>
 

@@ -41,7 +41,7 @@ const AboutSection = () => {
           <div className="space-y-3 md:space-y-4 font-mono text-sm md:text-base">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-brand-blue rounded-full border-2 border-black flex-shrink-0"></div>
-              <span className="font-bold">February 13-15, 2025 (9pm - 9am)</span>
+              <span className="font-bold">February 13-15, 2026 (9pm - 9am)</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-brand-red rounded-full border-2 border-black flex-shrink-0"></div>
