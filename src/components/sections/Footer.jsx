@@ -78,7 +78,7 @@ const Footer = () => {
             BUILT WITH <Heart size={20} color="#ea4335" className="md:w-6 md:h-6" /> BY GDG ON CAMPUS KSRCE
           </p>
           <p className="font-mono text-xs md:text-sm text-gray-400 mt-2 px-4">
-            © 2025 GDG On Campus KSRCE. All rights reserved.
+            © 2026 GDG On Campus KSRCE. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
-# GDG On Campus KSRCE - Hackwithgdg 2025
+# GDG On Campus KSRCE - Hackwithgdg 2026
 
-A modern, modular React application for the GDG Hackfest 2025 landing page with official Google brand guidelines and Gen Z neo-brutalist design aesthetics.
+A modern, modular React application for the GDG Hackfest 2026 landing page with official Google brand guidelines and Gen Z neo-brutalist design aesthetics.
 
 ## Project Structure
 
@@ -185,4 +185,4 @@ This project follows the official GDG brand guidelines:
 
 ## License
 
-© 2025 GDG On Campus KSRCE. All rights reserved.
+© 2026 GDG On Campus KSRCE. All rights reserved.

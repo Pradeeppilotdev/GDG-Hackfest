@@ -8,7 +8,7 @@ const BannerSection = () => {
         <div className="relative transform hover:scale-[1.02] transition-transform duration-300">
           <img
             src="/assets/photoframes/Copy of GDG-Campus-Digital-WebsiteBanner-2650x500-Red.png"
-            alt="GDG On Campus Hackfest 2025"
+            alt="GDG On Campus Hackfest 2026"
             className="w-full h-auto rounded-2xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-shadow"
           />
 
