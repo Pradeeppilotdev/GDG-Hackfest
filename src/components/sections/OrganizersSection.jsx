@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { organizers } from '../../data/organizers';
 import { ThreeLoops, AngledSlashes, Brackets, Asterisk } from '../icons';
 
@@ -54,34 +54,70 @@ const OrganizersSection = () => {
               className="transform transition-all duration-300 hover:scale-105 hover:-translate-y-2"
               style={{ transform: `rotate(${organizer.rotation}deg)` }}
             >
-              <div className="relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-                <div className="relative aspect-square">
-                  {/* Bottom Layer: User's Photo */}
-                  <img
-                    src={organizer.image}
-                    alt={organizer.name}
-                    className="absolute inset-0 w-full h-full object-cover rounded-xl"
-                    loading="lazy"
-                  />
+              {organizer.linkedin ? (
+                <a
+                  href={organizer.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 cursor-pointer block"
+                >
+                  <div className="relative aspect-square">
+                    {/* Bottom Layer: User's Photo */}
+                    <img
+                      src={organizer.image}
+                      alt={organizer.name}
+                      className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                      loading="lazy"
+                    />
 
-                  {/* Top Layer: Transparent PNG Frame Overlay */}
-                  <img
-                    src={`/assets/photoframes/GDG-Campus-Social-PhotoFrame-${organizer.frameColor}.png`}
-                    alt="GDG Frame"
-                    className="absolute inset-0 w-full h-full pointer-events-none"
-                    onError={(e) => {
-                      // Fallback to Green if specific color doesn't exist
-                      e.target.src = '/assets/photoframes/GDG-Campus-Social-PhotoFrame-Green.png';
-                    }}
-                  />
-                </div>
+                    {/* Top Layer: Transparent PNG Frame Overlay */}
+                    <img
+                      src={`/assets/photoframes/GDG-Campus-Social-PhotoFrame-${organizer.frameColor}.png`}
+                      alt="GDG Frame"
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      onError={(e) => {
+                        // Fallback to Green if specific color doesn't exist
+                        e.target.src = '/assets/photoframes/GDG-Campus-Social-PhotoFrame-Green.png';
+                      }}
+                    />
+                  </div>
 
-                {/* Sticky Note for Name & Designation */}
-                <div className="absolute -bottom-4 -right-4 bg-pastel-yellow border-2 border-black rounded-lg p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transform rotate-3 max-w-[80%]">
-                  <h3 className="font-heading font-bold text-sm md:text-base lg:text-lg leading-tight mb-1">{organizer.name}</h3>
-                  <p className="font-mono text-xs md:text-sm text-gray-700">{organizer.designation}</p>
+                  {/* Sticky Note for Name & Designation */}
+                  <div className="absolute -bottom-4 -right-4 bg-pastel-yellow border-2 border-black rounded-lg p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transform rotate-3 max-w-[80%]">
+                    <h3 className="font-heading font-bold text-sm md:text-base lg:text-lg leading-tight mb-1">{organizer.name}</h3>
+                    <p className="font-mono text-xs md:text-sm text-gray-700">{organizer.designation}</p>
+                  </div>
+                </a>
+              ) : (
+                <div className="relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                  <div className="relative aspect-square">
+                    {/* Bottom Layer: User's Photo */}
+                    <img
+                      src={organizer.image}
+                      alt={organizer.name}
+                      className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                      loading="lazy"
+                    />
+
+                    {/* Top Layer: Transparent PNG Frame Overlay */}
+                    <img
+                      src={`/assets/photoframes/GDG-Campus-Social-PhotoFrame-${organizer.frameColor}.png`}
+                      alt="GDG Frame"
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      onError={(e) => {
+                        // Fallback to Green if specific color doesn't exist
+                        e.target.src = '/assets/photoframes/GDG-Campus-Social-PhotoFrame-Green.png';
+                      }}
+                    />
+                  </div>
+
+                  {/* Sticky Note for Name & Designation */}
+                  <div className="absolute -bottom-4 -right-4 bg-pastel-yellow border-2 border-black rounded-lg p-3 md:p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transform rotate-3 max-w-[80%]">
+                    <h3 className="font-heading font-bold text-sm md:text-base lg:text-lg leading-tight mb-1">{organizer.name}</h3>
+                    <p className="font-mono text-xs md:text-sm text-gray-700">{organizer.designation}</p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>

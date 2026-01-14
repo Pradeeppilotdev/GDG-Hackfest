@@ -7,14 +7,16 @@ export const teamMembers = [
     role: "App Development Lead",
     image: "/assets/photos/teamphotos/1000055178-Picsart-AiImageEnhancer.jpg",
     frameColor: "Blue",
-    imagePosition: "center 30%" // Adjust: "left/center/right X%, top/center/bottom Y%"
+    imagePosition: "center 30%", // Adjust: "left/center/right X%, top/center/bottom Y%"
+    linkedin: "https://www.linkedin.com/in/gopinath-d-/"
   },
   {
     name: "Dharan R",
     role: "Cyber Security Lead",
     image: "/assets/photos/teamphotos/IMG-20251123-WA0015.jpg",
     frameColor: "Red",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/cy-sec-dharan/"
   },
   {
     name: "Gokula Bharathi L",
@@ -28,35 +30,40 @@ export const teamMembers = [
     role: "Web Development Lead",
     image: "/assets/photos/teamphotos/IMG_20241023_121843_757.jpg",
     frameColor: "Yellow",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/shakthivishwa-m-994225321/"
   },
   {
     name: "Sethupathi K",
     role: "Cloud & Devops Lead",
     image: "/assets/photos/teamphotos/Polish_20241017_221304347.png",
     frameColor: "Blue",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/sethupathi-k-3340a5292/"
   },
   {
     name: "Maha Vidhya Sri L",
     role: "Competitive Programming Lead",
     image: "/assets/photos/teamphotos/WhatsApp Image 2025-11-03 at 18.37.35_749ea508.jpg",
     frameColor: "Red",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/maha-vidhya-sri-lingeswaran-241486327/"
   },
   {
     name: "Cheyon K",
     role: "Linguistic Lead",
     image: "/assets/photos/teamphotos/1000153223.jpg",
     frameColor: "Green",
-    imagePosition: "center 35%"
+    imagePosition: "center 35%",
+    linkedin: "https://www.linkedin.com/in/cheyon-k-vijayakumar-742739372/"
   },
   {
     name: "Srinivasan V",
     role: "Graphic Design Lead",
     image: "/assets/photos/teamphotos/WhatsApp Image 2025-11-23 at 2.10.09 PM.jpeg",
     frameColor: "Yellow",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/srini2475/"
   },
   {
     name: "Tamilarasu",
@@ -70,13 +77,15 @@ export const teamMembers = [
     role: "Multimedia Lead",
     image: "/assets/photos/teamphotos/1000019953.jpg",
     frameColor: "Red",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/sanjai-ragul-b-899b992b0/"
   },
   {
     name: "Bharanidharan R",
     role: "Multimedia Lead",
     image: "/assets/photos/teamphotos/image.png",
     frameColor: "Green",
-    imagePosition: "center 30%"
+    imagePosition: "center 30%",
+    linkedin: "https://www.linkedin.com/in/bharanidharan-r-217a15291/"
   },
 ];

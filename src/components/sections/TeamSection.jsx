@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { teamMembers } from '../../data/team';
 import { ThreeLoops, AngledSlashes, Asterisk } from '../icons';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TeamSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const sectionRef = useRef(null);
   const carouselRef = useRef(null);
@@ -99,7 +98,6 @@ const TeamSection = () => {
           left: targetScroll,
           behavior: 'smooth'
         });
-        setScrollPosition(targetScroll);
       }
     }
   };
@@ -178,32 +176,65 @@ const TeamSection = () => {
                 className="flex-shrink-0 w-64 md:w-72 transform hover:scale-110 hover:-rotate-2 transition-all duration-300 snap-center"
               >
                 <div className="relative">
-                  {/* Photo Frame Card */}
-                  <div className="relative border-3 border-black rounded-2xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    {/* Member Photo */}
-                    <div className="aspect-square bg-white">
+                  {/* Photo Frame Card - Clickable if LinkedIn exists */}
+                  {member.linkedin ? (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative border-2 border-black rounded-2xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer block"
+                    >
+                      {/* Member Photo */}
+                      <div className="aspect-square bg-white">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                          style={{
+                            objectPosition: member.imagePosition || 'center 30%',
+                            objectFit: 'cover'
+                          }}
+                          loading="lazy"
+                        />
+                      </div>
+
+                      {/* GDG Photo Frame Overlay */}
                       <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        style={{
-                          objectPosition: member.imagePosition || 'center 30%',
-                          objectFit: 'cover'
+                        src={`/assets/photoframes/GDG-Campus-Social-PhotoFrame-${member.frameColor}.png`}
+                        alt="GDG Frame"
+                        className="absolute inset-0 w-full h-full pointer-events-none"
+                        onError={(e) => {
+                          e.target.src = '/assets/photoframes/GDG-Campus-Social-PhotoFrame-Green.png';
                         }}
-                        loading="lazy"
+                      />
+                    </a>
+                  ) : (
+                    <div className="relative border-2 border-black rounded-2xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all">
+                      {/* Member Photo */}
+                      <div className="aspect-square bg-white">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                          style={{
+                            objectPosition: member.imagePosition || 'center 30%',
+                            objectFit: 'cover'
+                          }}
+                          loading="lazy"
+                        />
+                      </div>
+
+                      {/* GDG Photo Frame Overlay */}
+                      <img
+                        src={`/assets/photoframes/GDG-Campus-Social-PhotoFrame-${member.frameColor}.png`}
+                        alt="GDG Frame"
+                        className="absolute inset-0 w-full h-full pointer-events-none"
+                        onError={(e) => {
+                          e.target.src = '/assets/photoframes/GDG-Campus-Social-PhotoFrame-Green.png';
+                        }}
                       />
                     </div>
-
-                    {/* GDG Photo Frame Overlay */}
-                    <img
-                      src={`/assets/photoframes/GDG-Campus-Social-PhotoFrame-${member.frameColor}.png`}
-                      alt="GDG Frame"
-                      className="absolute inset-0 w-full h-full pointer-events-none"
-                      onError={(e) => {
-                        e.target.src = '/assets/photoframes/GDG-Campus-Social-PhotoFrame-Green.png';
-                      }}
-                    />
-                  </div>
+                  )}
 
                   {/* Sticky Note with Name & Role */}
                   <div className="absolute -bottom-3 -right-3 bg-pastel-yellow border-2 border-black rounded-lg p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform rotate-3 max-w-[85%]">
