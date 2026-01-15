@@ -1,7 +1,16 @@
-import React from 'react';
+import { useState, useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../ui';
 
 const SponsorsSection = () => {
+  const [silverIndex, setSilverIndex] = useState(0);
+  const [mediaIndex, setMediaIndex] = useState(0);
+
+  const silverCarouselRef = useRef(null);
+  const silverCardRefs = useRef([]);
+  const mediaCarouselRef = useRef(null);
+  const mediaCardRefs = useRef([]);
+
   // Gold Tier Sponsors
   const goldSponsors = [
     // Currently no gold sponsors. Devfolio has been moved to Media Partners.
@@ -19,6 +28,74 @@ const SponsorsSection = () => {
     { name: "Eventopia", logo: "/assets/Eventopia-Logo-10.png", alt: "EVENTOPIA LOGO", url: "https://eventopia.in" },
     { name: "Devfolio", logo: "/_Light.png", alt: "DEVFOLIO LOGO", url: "https://devfolio.co" }
   ];
+
+  const scrollSilver = (direction) => {
+    if (!silverCarouselRef.current || silverCardRefs.current.length === 0) return;
+
+    let targetIndex = silverIndex;
+    if (direction === 'left') {
+      targetIndex = targetIndex - 1;
+      if (targetIndex < 0) targetIndex = silverSponsors.length - 1;
+    } else {
+      targetIndex = targetIndex + 1;
+      if (targetIndex >= silverSponsors.length) targetIndex = 0;
+    }
+
+    setSilverIndex(targetIndex);
+
+    const container = silverCarouselRef.current;
+    const targetCard = silverCardRefs.current[targetIndex];
+    if (container && targetCard) {
+      const containerRect = container.getBoundingClientRect();
+      const cardRect = targetCard.getBoundingClientRect();
+
+      const scrollLeft = container.scrollLeft;
+      const cardLeft = cardRect.left - containerRect.left + scrollLeft;
+      const cardWidth = cardRect.width;
+      const containerWidth = containerRect.width;
+
+      const targetScroll = cardLeft - containerWidth / 2 + cardWidth / 2;
+
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const scrollMedia = (direction) => {
+    if (!mediaCarouselRef.current || mediaCardRefs.current.length === 0) return;
+
+    let targetIndex = mediaIndex;
+    if (direction === 'left') {
+      targetIndex = targetIndex - 1;
+      if (targetIndex < 0) targetIndex = mediaPartners.length - 1;
+    } else {
+      targetIndex = targetIndex + 1;
+      if (targetIndex >= mediaPartners.length) targetIndex = 0;
+    }
+
+    setMediaIndex(targetIndex);
+
+    const container = mediaCarouselRef.current;
+    const targetCard = mediaCardRefs.current[targetIndex];
+    if (container && targetCard) {
+      const containerRect = container.getBoundingClientRect();
+      const cardRect = targetCard.getBoundingClientRect();
+
+      const scrollLeft = container.scrollLeft;
+      const cardLeft = cardRect.left - containerRect.left + scrollLeft;
+      const cardWidth = cardRect.width;
+      const containerWidth = containerRect.width;
+
+      const targetScroll = cardLeft - containerWidth / 2 + cardWidth / 2;
+
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   // Other Sponsors (Bronze/Community)
   const otherSponsors = [
@@ -70,32 +147,30 @@ const SponsorsSection = () => {
       )}
 
       {/* Silver Tier */}
-      <div className="max-w-7xl mx-auto px-4 mb-12 md:mb-16">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-3 mb-6 md:mb-8">
-          <div className="w-8 h-8 bg-black rounded-full border-2 border-black"></div>
-          <h3 className="font-heading font-bold text-2xl md:text-3xl text-gray-400 text-center">
-            SILVER SPONSORS
-          </h3>
-          <div className="w-8 h-8 bg-white border-2 border-black rounded-full"></div>
-        </div>
-        <div className="overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory">
-          <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center items-center gap-6 md:gap-8 md:snap-none">
+      {/* Desktop / Tablet: grid view */}
+      <div className="hidden md:block">
+        <div className="max-w-7xl mx-auto px-4 mb-12 md:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-6 md:mb-8">
+            <div className="w-8 h-8 bg-black rounded-full border-2 border-black"></div>
+            <h3 className="font-heading font-bold text-2xl md:text-3xl text-gray-400">
+              SILVER SPONSORS
+            </h3>
+            <div className="w-8 h-8 bg-white border-2 border-black rounded-full"></div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
             {silverSponsors.map((sponsor, index) => (
               <a
                 key={index}
                 href={sponsor.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-br from-gray-100 to-gray-50 border-4 border-gray-400 rounded-2xl px-8 md:px-12 py-6 md:py-8 shadow-[6px_6px_0px_0px_rgba(156,163,175,1)] hover:shadow-[8px_8px_0px_0px_rgba(156,163,175,1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer block min-w-[80vw] md:min-w-[220px] snap-center md:snap-start"
+                className="bg-gradient-to-br from-gray-100 to-gray-50 border-4 border-gray-400 rounded-2xl px-8 md:px-12 py-6 md:py-8 shadow-[6px_6px_0px_0px_rgba(156,163,175,1)] hover:shadow-[8px_8px_0px_0px_rgba(156,163,175,1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer block min-w-[220px]"
               >
                 <div className="flex flex-col items-center gap-4">
                   <img 
                     src={sponsor.logo} 
                     alt={sponsor.alt || sponsor.name}
-                    className="w-32 h-16 md:w-40 md:h-20 object-contain"
-                    onError={(e) => {
-                      console.error(`Failed to load logo: ${sponsor.logo}`);
-                    }}
+                    className="w-40 h-20 md:w-48 md:h-24 object-contain"
                   />
                 </div>
               </a>
@@ -104,37 +179,153 @@ const SponsorsSection = () => {
         </div>
       </div>
 
-      {/* Media Partners */}
-      <div className="max-w-7xl mx-auto px-4 mb-12 md:mb-16">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-3 mb-6 md:mb-8">
+      {/* Mobile: horizontal carousel with arrows (Team-style scroll) */}
+      <div className="block md:hidden max-w-7xl mx-auto px-4 mb-12">
+        <div className="flex flex-col items-center justify-center gap-3 mb-6">
           <div className="w-8 h-8 bg-black rounded-full border-2 border-black"></div>
-          <h3 className="font-heading font-bold text-2xl md:text-3xl text-brand-blue text-center">
-            MEDIA PARTNERS
+          <h3 className="font-heading font-bold text-2xl text-gray-400 text-center">
+            SILVER SPONSORS
           </h3>
           <div className="w-8 h-8 bg-white border-2 border-black rounded-full"></div>
         </div>
-        <div className="overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory">
-          <div className="flex flex-nowrap md:flex-wrap justify-center md:justify-center items-center gap-6 md:gap-8 md:snap-none">
+
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scrollSilver('left')}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm border-3 border-black rounded-full p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            aria-label="Previous silver sponsor"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={() => scrollSilver('right')}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm border-3 border-black rounded-full p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            aria-label="Next silver sponsor"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          {/* Scrolling row like TeamSection */}
+          <div
+            ref={silverCarouselRef}
+            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex gap-4">
+              {silverSponsors.map((sponsor, index) => (
+                <a
+                  key={index}
+                  ref={(el) => (silverCardRefs.current[index] = el)}
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 w-[80vw] max-w-sm bg-gradient-to-br from-gray-100 to-gray-50 border-4 border-gray-400 rounded-2xl px-6 py-6 shadow-[6px_6px_0px_0px_rgba(156,163,175,1)] hover:shadow-[8px_8px_0px_0px_rgba(156,163,175,1)] transition-all duration-300 cursor-pointer snap-center"
+                >
+                  <div className="flex flex-col items-center gap-4 w-full">
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.alt || sponsor.name}
+                      className="w-40 h-20 object-contain"
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Media Partners */}
+      {/* Desktop / Tablet: grid view */}
+      <div className="hidden md:block">
+        <div className="max-w-7xl mx-auto px-4 mb-12 md:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-6 md:mb-8">
+            <div className="w-8 h-8 bg-black rounded-full border-2 border-black"></div>
+            <h3 className="font-heading font-bold text-2xl md:text-3xl text-brand-blue">
+              MEDIA PARTNERS
+            </h3>
+            <div className="w-8 h-8 bg-white border-2 border-black rounded-full"></div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
             {mediaPartners.map((partner, index) => (
               <a
                 key={index}
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-br from-blue-50 to-blue-100 border-4 border-brand-blue rounded-2xl px-8 md:px-12 py-6 md:py-8 shadow-[6px_6px_0px_0px_rgba(66,133,244,1)] hover:shadow-[8px_8px_0px_0px_rgba(66,133,244,1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer block min-w-[80vw] md:min-w-[220px] snap-center md:snap-start"
+                className="bg-gradient-to-br from-blue-50 to-blue-100 border-4 border-brand-blue rounded-2xl px-8 md:px-12 py-6 md:py-8 shadow-[6px_6px_0px_0px_rgba(66,133,244,1)] hover:shadow-[8px_8px_0px_0px_rgba(66,133,244,1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer block min-w-[220px]"
               >
                 <div className="flex flex-col items-center gap-4">
                   <img 
                     src={partner.logo} 
                     alt={partner.alt || partner.name}
-                    className="w-32 h-16 md:w-40 md:h-20 object-contain"
-                    onError={() => {
-                      console.error(`Failed to load logo: ${partner.logo}`);
-                    }}
+                    className="w-40 h-20 md:w-48 md:h-24 object-contain"
                   />
                 </div>
               </a>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile: horizontal carousel with arrows (Team-style scroll) */}
+      <div className="block md:hidden max-w-7xl mx-auto px-4 mb-12">
+        <div className="flex flex-col items-center justify-center gap-3 mb-6">
+          <div className="w-8 h-8 bg-black rounded-full border-2 border-black"></div>
+          <h3 className="font-heading font-bold text-2xl text-brand-blue text-center">
+            MEDIA PARTNERS
+          </h3>
+          <div className="w-8 h-8 bg-white border-2 border-black rounded-full"></div>
+        </div>
+
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scrollMedia('left')}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm border-3 border-black rounded-full p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            aria-label="Previous media partner"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={() => scrollMedia('right')}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm border-3 border-black rounded-full p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            aria-label="Next media partner"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          {/* Scrolling row like TeamSection */}
+          <div
+            ref={mediaCarouselRef}
+            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex gap-4">
+              {mediaPartners.map((partner, index) => (
+                <a
+                  key={index}
+                  ref={(el) => (mediaCardRefs.current[index] = el)}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 w-[80vw] max-w-sm bg-gradient-to-br from-blue-50 to-blue-100 border-4 border-brand-blue rounded-2xl px-6 py-6 shadow-[6px_6px_0px_0px_rgba(66,133,244,1)] hover:shadow-[8px_8px_0px_0px_rgba(66,133,244,1)] transition-all duration-300 cursor-pointer snap-center"
+                >
+                  <div className="flex flex-col items-center gap-4 w-full">
+                    <img
+                      src={partner.logo}
+                      alt={partner.alt || partner.name}
+                      className="w-40 h-20 object-contain"
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
