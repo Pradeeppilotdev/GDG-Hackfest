@@ -1,4 +1,4 @@
-# GDG On Campus KSRCE - Hackwithgdg 2026
+# GDG On Campus KSRCE - Hack with GDG S3 2026
 
 A modern, modular React application for the GDG Hackfest 2026 landing page with official Google brand guidelines and Gen Z neo-brutalist design aesthetics.
 

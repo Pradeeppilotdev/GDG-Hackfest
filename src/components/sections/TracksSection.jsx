@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Brain, Cloud, Smartphone, Lightbulb, ArrowRight } from 'lucide-react';
+import { Brain, Cloud, Smartphone, Lightbulb, Zap, ArrowRight } from 'lucide-react';
 import { StickerCard } from '../ui';
 import { tracks } from '../../data/tracks';
 
@@ -33,7 +33,8 @@ const TracksSection = () => {
     Brain,
     Cloud,
     Smartphone,
-    Lightbulb
+    Lightbulb,
+    Zap
   };
 
   return (
@@ -62,10 +63,10 @@ const TracksSection = () => {
                       <IconComponent size={40} className="md:w-12 md:h-12 flex-shrink-0" />
                     </div>
                     <p className="text-base md:text-lg mb-4 md:mb-6 flex-grow">{track.description}</p>
-                    <a href="#" className="font-mono font-bold text-sm md:text-base hover:underline inline-flex items-center gap-2 group">
+                    {/* <a href="#" className="font-mono font-bold text-sm md:text-base hover:underline inline-flex items-center gap-2 group">
                       Explore Track
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </a> */}
                   </div>
                 </StickerCard>
               </div>
