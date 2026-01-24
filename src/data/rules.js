@@ -22,7 +22,7 @@ export const participationRules = [
   {
     title: "Intellectual Property",
     icon: "FileText",
-    description: "Ideas belong to teams/individuals, with non-exclusive rights to GDG FEST '25 for promotion."
+    description: "Ideas belong to teams/individuals, with non-exclusive rights to Hack with GDG S3 for promotion."
   }
 ];
 

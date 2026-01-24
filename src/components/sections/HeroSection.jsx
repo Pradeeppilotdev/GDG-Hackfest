@@ -239,7 +239,7 @@ const HeroSection = () => {
           </Button>
           <Button 
             variant="outline" 
-            href="https://discord.gg/bmAaQWMp" 
+            href="https://discord.gg/c4t9bQdrmG" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 w-full sm:w-auto bg-white font-bold"
