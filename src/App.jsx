@@ -4,6 +4,7 @@ import HeroSection from './components/sections/HeroSection';
 import BannerSection from './components/sections/BannerSection';
 import AboutSection from './components/sections/AboutSection';
 import TracksSection from './components/sections/TracksSection';
+import TrackPrizesSection from './components/sections/TrackPrizesSection';
 import TimelineSection from './components/sections/TimelineSection';
 import ParticipationSection from './components/sections/ParticipationSection';
 import EventSpecificsSection from './components/sections/EventSpecificsSection';
@@ -25,6 +26,7 @@ function App() {
       <BannerSection />
       <AboutSection />
       <TracksSection />
+      <TrackPrizesSection />
       <TimelineSection />
       <ParticipationSection />
       <EventSpecificsSection />
