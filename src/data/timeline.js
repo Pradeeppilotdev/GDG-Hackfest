@@ -16,6 +16,6 @@ export const timelineEvents = [
   // Day 3
   { time: "06:00 AM", event: "Progress Review 2 (Final Judging Starts)", color: "bg-brand-yellow", date: "Day 3" },
   { time: "08:00 AM", event: "Breakfast", color: "bg-brand-green", date: "Day 3" },
-  { time: "09:00 PM", event: "Hackathon Ends & Judging Continues", color: "bg-brand-blue", date: "Day 3" }
+  { time: "09:00 AM", event: "Hackathon Ends & Judging Continues", color: "bg-brand-blue", date: "Day 3" }
 ];
 
